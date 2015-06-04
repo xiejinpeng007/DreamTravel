@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@android:drawable/editbox_background_normal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="机票"
+        android:id="@+id/textView52"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:textSize="15dp"
+        android:textColor="#ff000000" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/textView53"
+        android:textSize="15dp"
+        android:layout_alignTop="@+id/textView55"
+        android:layout_alignParentStart="true"
+        android:textColor="#ff000000" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/textView54"
+        android:textSize="20dp"
+        android:textColor="#ff000000"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/textView52"
+        android:layout_toRightOf="@+id/textView52" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/textView55"
+        android:textSize="15dp"
+        android:textColor="#ff000000"
+        android:layout_below="@+id/textView54"
+        android:layout_alignStart="@+id/textView54"
+        android:layout_alignLeft="@+id/textView54" />
+
+</RelativeLayout>

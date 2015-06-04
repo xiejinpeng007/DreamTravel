@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@android:drawable/editbox_background_normal">
+
+    <com.loopj.android.image.SmartImageView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/smartimageview4"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/textView68"
+        android:scaleType="fitXY"
+        android:background="@android:drawable/picture_frame" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="景点信息"
+        android:id="@+id/textView66"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="价格"
+        android:id="@+id/textView67"
+        android:textSize="15dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/textView66"
+        android:layout_toEndOf="@+id/smartimageview4"
+        android:layout_alignLeft="@+id/textView66" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="地址"
+        android:id="@+id/textView68"
+        android:textSize="15dp"
+        android:layout_below="@+id/textView67"
+        android:layout_alignStart="@+id/textView67"
+        android:layout_alignLeft="@+id/textView66"
+        android:textColor="@android:color/black" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView18"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/textView68"
+        android:src="@drawable/more"
+        android:layout_marginRight="20dp" />
+</RelativeLayout>

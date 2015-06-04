@@ -1,0 +1,94 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="10"
+        android:layout_above="@+id/radiogroup">
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.example.xjp.myapplication1.Fragment1"
+            android:id="@+id/fragment"
+            tools:layout="@layout/fragment1"
+            android:layout_weight="1" />
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.example.xjp.myapplication1.Fragment2"
+            android:id="@+id/fragment2"
+            tools:layout="@layout/fragment2"
+            android:layout_weight="1" />
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.example.xjp.myapplication1.Fragment3"
+            android:id="@+id/fragment3"
+            tools:layout="@layout/fragment3"
+            android:layout_weight="1"
+            android:layout_above="@+id/radiogroup"
+            android:layout_alignParentStart="true" />
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:id="@+id/radiogroup"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:baselineAligned="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignWithParentIfMissing="false">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/radioButton"
+            android:checked="false"
+            android:singleLine="false"
+            android:layout_weight="1"
+            android:text="出行"
+            android:button="@null"
+            android:drawableTop="@drawable/home2"
+            android:gravity="center" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/radioButton2"
+            android:checked="false"
+            android:singleLine="false"
+
+            android:button="@null"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="热门"
+            android:drawableTop="@drawable/flag" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/radioButton3"
+            android:checked="false"
+            android:singleLine="false"
+            android:button="@null"
+
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="用户"
+            android:drawableTop="@drawable/my" />
+
+    </RadioGroup>
+
+</RelativeLayout>

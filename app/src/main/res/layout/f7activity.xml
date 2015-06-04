@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:focusableInTouchMode="false"
+    android:focusable="false">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="飞机票查询"
+        android:id="@+id/textView49"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"
+        android:textColor="#ff000000"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText14"
+        android:layout_below="@+id/textView49"
+        android:layout_alignEnd="@+id/textView49"
+        android:layout_alignStart="@+id/textView49"
+        android:text="成都"
+        android:gravity="bottom|center_horizontal"
+        android:background="@android:drawable/editbox_background_normal"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText15"
+        android:layout_below="@+id/editText14"
+        android:layout_alignStart="@+id/editText14"
+        android:layout_alignEnd="@+id/editText14"
+        android:gravity="bottom|center_horizontal"
+        android:background="@android:drawable/editbox_background_normal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="出发城市:"
+        android:id="@+id/textView50"
+        android:textSize="20dp"
+        android:layout_alignBottom="@+id/editText14"
+        android:layout_toStartOf="@+id/editText14" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="到达城市:"
+        android:id="@+id/textView51"
+        android:layout_alignBottom="@+id/editText15"
+        android:layout_alignEnd="@+id/textView50"
+        android:textSize="20dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="查询"
+        android:id="@+id/button11"
+        android:layout_below="@+id/textView56"
+        android:layout_alignEnd="@+id/editText15"
+        android:layout_toEndOf="@+id/textView56"
+        android:textColor="#ffffffff"
+        android:background="@drawable/button_shape"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="出发日期:"
+        android:id="@+id/textView56"
+        android:textSize="20dp"
+        android:layout_alignBottom="@+id/textView57"
+        android:layout_toStartOf="@+id/textView57" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView57"
+        android:textSize="20dp"
+        android:text="请选择日期"
+        android:background="@android:drawable/editbox_background_normal"
+        android:layout_below="@+id/editText15"
+        android:layout_alignEnd="@+id/editText15"
+        android:layout_toEndOf="@+id/textView51"
+        android:gravity="center" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView8"
+        android:layout_below="@+id/button11"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:dividerHeight="0dp"
+        android:divider="#00ffffff" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView14"
+        android:layout_toStartOf="@+id/textView49"
+        android:layout_alignBottom="@+id/textView49"
+        android:layout_alignLeft="@+id/textView50"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ff7"
+        android:scaleType="fitCenter" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView15"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/textView49"
+        android:layout_alignEnd="@+id/listView8"
+        android:layout_toRightOf="@+id/textView49"
+        android:src="@drawable/ff7"
+        android:scaleType="fitCenter" />
+
+</RelativeLayout>

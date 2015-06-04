@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/XJP/work/android/MyApplication1/app/libs/android-smart-image-view-1.0.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="d76ea8c3e9a60101244d6d04aff8cc75888570f0">
+        <dex dex="/Users/XJP/work/android/MyApplication1/app/build/intermediates/pre-dexed/debug/android-smart-image-view-1.0.0-d1c69e4125e5c9be3fe8b76b0de7db25522c9eea.jar" />
+    </item>
+
+</items>

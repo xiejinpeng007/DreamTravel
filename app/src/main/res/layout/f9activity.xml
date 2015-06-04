@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:focusableInTouchMode="false"
+    android:focusable="false">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="汽车票查询"
+        android:id="@+id/textView42"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#ff000000" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText12"
+        android:layout_below="@+id/textView42"
+        android:layout_alignStart="@+id/textView42"
+        android:layout_alignEnd="@+id/textView42"
+        android:gravity="bottom|center_horizontal"
+        android:background="@android:drawable/editbox_background_normal"
+        android:layout_marginTop="10dp"
+        android:text="成都" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText13"
+        android:layout_below="@+id/editText12"
+        android:layout_alignEnd="@+id/editText12"
+        android:layout_alignStart="@+id/editText12"
+        android:gravity="bottom|center_horizontal"
+        android:background="@android:drawable/editbox_background_normal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="查询"
+        android:id="@+id/button8"
+        android:layout_below="@+id/editText13"
+        android:layout_alignStart="@+id/editText13"
+        android:layout_alignEnd="@+id/editText13"
+        android:background="@drawable/button_shape"
+        android:layout_marginTop="10dp"
+        android:textColor="#ffffffff" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView7"
+        android:layout_below="@+id/button8"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:dividerHeight="0dp"
+        android:divider="#00ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="出发城市:"
+        android:id="@+id/textView47"
+        android:layout_alignBottom="@+id/editText12"
+        android:layout_toStartOf="@+id/textView42"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="到达城市:"
+        android:id="@+id/textView48"
+        android:layout_toStartOf="@+id/editText12"
+        android:layout_alignBottom="@+id/editText13"
+        android:textSize="20dp" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar3"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView10"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/textView42"
+        android:layout_alignLeft="@+id/textView47"
+        android:src="@drawable/ff9"
+        android:layout_above="@+id/editText12"
+        android:scaleType="fitCenter" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView11"
+        android:src="@drawable/ff9"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitCenter"
+        android:layout_alignEnd="@+id/listView7"
+        android:layout_alignBottom="@+id/textView42"
+        android:layout_toEndOf="@+id/textView42" />
+</RelativeLayout>
