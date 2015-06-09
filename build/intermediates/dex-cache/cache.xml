@@ -2,20 +2,6 @@
 <items version="2" >
 
     <item
-        jar="/Users/XJP/work/android/MyApplication1/app/libs/volley.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="4a94601db9bdfb7dc60efabb3dea91a0675f591d">
-        <dex dex="/Users/XJP/work/android/MyApplication1/app/build/intermediates/pre-dexed/debug/volley-b8d9a171829b94d8716c7c25d58d87f6aebb0fa6.jar" />
-    </item>
-    <item
-        jar="/Users/XJP/work/android/MyApplication1/app/libs/universal-image-loader-1.9.4.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="dd9eeb557650c4ad7394df23f0f5cf27a7cfc697">
-        <dex dex="/Users/XJP/work/android/MyApplication1/app/build/intermediates/pre-dexed/debug/universal-image-loader-1.9.4-a105eb0fbcfbbb568e23492e9277cf6051c78e89.jar" />
-    </item>
-    <item
         jar="/Users/XJP/work/android/MyApplication1/app/build/intermediates/exploded-aar/com.specyci/residemenu/1.6/classes.jar"
         jumboMode="false"
         revision="22.0.0"
@@ -28,6 +14,20 @@
         revision="22.0.0"
         sha1="d76ea8c3e9a60101244d6d04aff8cc75888570f0">
         <dex dex="/Users/XJP/work/android/MyApplication1/app/build/intermediates/pre-dexed/debug/android-smart-image-view-1.0.0-d1c69e4125e5c9be3fe8b76b0de7db25522c9eea.jar" />
+    </item>
+    <item
+        jar="/Users/XJP/work/android/MyApplication1/app/libs/volley.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="4a94601db9bdfb7dc60efabb3dea91a0675f591d">
+        <dex dex="/Users/XJP/work/android/MyApplication1/app/build/intermediates/pre-dexed/debug/volley-b8d9a171829b94d8716c7c25d58d87f6aebb0fa6.jar" />
+    </item>
+    <item
+        jar="/Users/XJP/work/android/MyApplication1/app/libs/universal-image-loader-1.9.4.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="dd9eeb557650c4ad7394df23f0f5cf27a7cfc697">
+        <dex dex="/Users/XJP/work/android/MyApplication1/app/build/intermediates/pre-dexed/debug/universal-image-loader-1.9.4-a105eb0fbcfbbb568e23492e9277cf6051c78e89.jar" />
     </item>
     <item
         jar="/Users/XJP/work/android/MyApplication1/app/build/intermediates/exploded-aar/com.yalantis/phoenix/1.2.1/classes.jar"

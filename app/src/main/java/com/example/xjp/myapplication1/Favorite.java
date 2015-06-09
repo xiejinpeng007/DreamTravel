@@ -31,10 +31,10 @@ public class Favorite extends Activity {
         listView=(ListView)findViewById(R.id.listView);
 
         final SharedPreferences sharedPreferences=getSharedPreferences("flag", Context.MODE_PRIVATE);
-        String usrname=sharedPreferences.getString("username", "visitor");
+        String username=sharedPreferences.getString("username", "visitor");
         DB db=new DB(this);
         SQLiteDatabase dbRead=db.getReadableDatabase();
-        Cursor cursor=dbRead.query("userfavorite", null, null, null, null, null, null);
+        Cursor cursor=dbRead.query("userfavorite", null,"username=?", new String[]{username}, null, null, null);
         while (cursor.moveToNext()){
             String ScenicName=cursor.getString(cursor.getColumnIndex("ScenicName"));
             String ScenicPrice="价格:"+cursor.getString(cursor.getColumnIndex("ScenicPrice"));

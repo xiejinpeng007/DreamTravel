@@ -147,16 +147,15 @@ public class MainActivity extends Activity implements View.OnClickListener{
     public void onClick(View view) {
 
         if (view == itemHome){
-            Toast.makeText(this,"click home",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"click home,功能制作中.",Toast.LENGTH_SHORT).show();
         }else if (view == itemProfile){
-            Toast.makeText(this,"click profile",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"click profile,功能制作中.",Toast.LENGTH_SHORT).show();
         }else if (view == itemfavor){
             Intent intent=new Intent();
             intent.setClass(MainActivity.this,Favorite.class);
             startActivity(intent);
-            Toast.makeText(this,"click calendar",Toast.LENGTH_SHORT).show();
         }else if (view == itemSettings){
-            Toast.makeText(this,"click settings",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"click settings,功能制造中.",Toast.LENGTH_SHORT).show();
         }
 
         resideMenu.closeMenu();
