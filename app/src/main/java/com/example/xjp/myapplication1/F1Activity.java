@@ -1,41 +1,41 @@
 package com.example.xjp.myapplication1;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.loopj.android.image.SmartImageView;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.yalantis.phoenix.PullToRefreshView;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.ref.WeakReference;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.PropertyPermission;
 
 
 /**
@@ -43,108 +43,50 @@ import java.util.PropertyPermission;
  */
 
 public class F1Activity extends Activity{
-
     ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();//ArrayList用于存储HashMap
-    SimpleAdapter adapter;
-    TextView textView66;
-    TextView textView67;
-    TextView textView68;
+//    MyAdapter adapter;
     ProgressBar progressBar9;
+    String Jsonresult=null;
+    ListView listView5;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);//隐藏actionbar
         setContentView(R.layout.f1activity);
-        textView66=(TextView)findViewById(R.id.textView66);
-        textView67=(TextView)findViewById(R.id.textView67);
-        textView68=(TextView)findViewById(R.id.textView68);
+        final MyAdapter adapter=new MyAdapter(this);
         progressBar9=(ProgressBar)findViewById(R.id.progressBar9);
-        final ListView listView5=(ListView)findViewById(R.id.listView5);
-
-
-        adapter=new SimpleAdapter(this,list,R.layout.listview5,//创建简单适配器
-                new String[]{"ScenicName","ScenicPrice","ScenicAddress","ScenicPic"},
-                new int[]{R.id.textView66,R.id.textView67,R.id.textView68,R.id.smartimageview4});
+        listView5=(ListView)findViewById(R.id.listView5);
         listView5.setAdapter(adapter);
-        //重新传入bitmap数据时的获取地址方式
-        adapter.setViewBinder(new SimpleAdapter.ViewBinder() {
-
-            public boolean setViewValue(View view, Object data,
-                                        String textRepresentation) {
-                // 判断是否为我们要处理的对象
-                if (view instanceof SmartImageView && data instanceof Bitmap) {
-                    SmartImageView iv = (SmartImageView) view;
-
-                    iv.setImageBitmap((Bitmap) data);
-                    return true;
-                } else
-                    return false;
-            }
-        });
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        //初始化imageloader
+        ImageLoaderConfiguration imageLoaderConfiguration=ImageLoaderConfiguration.createDefault(this);
+        ImageLoader.getInstance().init(imageLoaderConfiguration);
 
-        //副线程
-        final Thread thread = new Thread (new Runnable() {
+        //获取网络数据
+        getwebdata();
+
+
+        //下拉刷新
+        final PullToRefreshView mPullToRefreshView = (PullToRefreshView) findViewById(R.id.pull_to_refresh);
+        mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
             @Override
-            public void run() {
-
-                //网络通讯
-                try {
-                    String result=null;
-                    HttpClient client = new DefaultHttpClient();
-                    String uri="http://mxly.wicp.net/DreamtimeTravel/servlet/ClientScenicList?flag=scenic";
-                    HttpGet get = new HttpGet(uri);
-                    HttpResponse response = client.execute(get);
-                    int statuscode = response.getStatusLine().getStatusCode();
-                    if (statuscode == HttpStatus.SC_OK) {
-                        result = EntityUtils.toString(response.getEntity(), "UTF-8");
-
-                        //解析json
-                        try {
-                            JSONObject jsonObject = new JSONObject(result);
-                            JSONArray jsonArray = jsonObject.getJSONArray("ScenicList");
-                            for(int i=0;i<jsonArray.length();i++) {
-                                HashMap<String, Object> map = new HashMap<String, Object>();//HashMap用于存储map，每行数据
-                                JSONObject jsonObject2 = (JSONObject) jsonArray.opt(i);
-                                String ScenicPrice = jsonObject2.getString("ScenicPrice");
-                                String ScenicAddress = jsonObject2.getString("ScenicAddress");
-                                String ScenicName = jsonObject2.getString("ScenicName");
-                                String ScenicPic = jsonObject2.getString(("ScenicPic"));
-                                String ScenicIntroduce = jsonObject2.getString(("ScenicIntroduce"));
-                                //解析uri图片
-                                Bitmap bitmap = null;
-                                try {
-                                    URL url = new URL(ScenicPic);
-                                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                                    InputStream inputStream = conn.getInputStream();
-                                    bitmap = BitmapFactory.decodeStream(inputStream);
-
-                                } catch (MalformedURLException e) {
-                                    e.printStackTrace();
-                                }
-
-                                map.put("ScenicPrice", ScenicPrice);
-                                map.put("ScenicAddress", ScenicAddress);
-                                map.put("ScenicName",ScenicName);
-                                map.put("ScenicPic",bitmap);
-                                map.put("ScenicIntroduce",ScenicIntroduce);
-                                list.add(map);
-                            }
-                            handler.sendEmptyMessage(0);
-                        } catch (JSONException e) {
-                            System.out.println("Json parse error");
-                            e.printStackTrace();
-                        }
+            public void onRefresh() {
+                list.clear();
+                getwebdata();
+                adapter.notifyDataSetChanged();
+                Toast.makeText(getApplicationContext(), "refresh", Toast.LENGTH_LONG).show();
+                //设置弹回延时时间
+                mPullToRefreshView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPullToRefreshView.setRefreshing(false);
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
+                }, 1500);
             }
         });
-        thread.start();
-
+        //点击后进入详细页面并传入数据
         listView5.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -163,35 +105,126 @@ public class F1Activity extends Activity{
             }
         });
     }
+    //继承并重写BaseAdapter
+    private class MyAdapter extends BaseAdapter {
 
+        private LayoutInflater mInflater;//得到一个LayoutInfalter对象用来导入布局
 
-
-
-    private void showTip(String str){
-        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
-    }
-
-    IHandler handler = new IHandler(this);
-    private static class IHandler extends Handler {
-        private final WeakReference<Activity> mActivity;
-        public IHandler(F1Activity activity) {
-            mActivity = new WeakReference<Activity>(activity);
+        /*构造函数*/
+        public MyAdapter(Context context) {
+            this.mInflater = LayoutInflater.from(context);
         }
+
         @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            int flag = msg.what;
-            switch (flag) {
-                case 0:
-                    ((F1Activity)mActivity.get()).progressBar9.setVisibility(View.INVISIBLE);
-                    ((F1Activity) mActivity.get()).adapter.notifyDataSetChanged();
-                    break;
-                default:
-                    break;
-            }
-
+        public int getCount() {
+            return list.size();
         }
 
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
 
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+        /*书中详细解释该方法*/
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            final ViewHolder holder;
+        if (convertView==null){
+            convertView=mInflater.inflate(R.layout.listview5,null);
+            holder=new ViewHolder();
+            holder.textView66=(TextView)convertView.findViewById(R.id.textView66);
+            holder.textView67=(TextView)convertView.findViewById(R.id.textView67);
+            holder.textView68=(TextView)convertView.findViewById(R.id.textView68);
+            holder.smartImageView4=(SmartImageView)convertView.findViewById(R.id.smartimageview4);
+            convertView.setTag(holder);
+        }
+        else {
+            holder=(ViewHolder)convertView.getTag();
+        }
+        holder.textView66.setText(list.get(position).get("ScenicPrice").toString());
+        holder.textView67.setText(list.get(position).get("ScenicAddress").toString());
+        holder.textView68.setText(list.get(position).get("ScenicName").toString());
+
+        final DisplayImageOptions options=new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.ic_launcher)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
+        ImageLoader.getInstance().displayImage(
+                list.get(position).get("ScenicPic").toString(),
+                holder.smartImageView4,options);
+
+        return convertView;
     }
+}
+public final class ViewHolder{
+    public TextView textView66;
+    public TextView textView67;
+    public TextView textView68;
+    public SmartImageView smartImageView4;
+}
+
+
+    //获取数据
+public void getwebdata() {
+
+    //使用Volley库进行网络通讯
+    String uri = "http://mxly.wicp.net/DreamtimeTravel/servlet/ClientScenicList?flag=scenic";
+    RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+    StringRequest stringRequest = new StringRequest(uri, new Response.Listener<String>() {
+        @Override
+        public void onResponse(String result) {
+            Jsonresult = result;
+        }
+    }, new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            Log.v("ErrorResponse", "ErrorResponse");
+        }
+    });
+
+    requestQueue.add(stringRequest);
+    if (Jsonresult == null)
+        Log.v("tag", "json is null");
+    else
+        Log.v("tag", "json is not null");
+
+    //解析JSON
+    try {
+        JSONObject jsonObject = new JSONObject(Jsonresult);
+        JSONArray jsonArray = jsonObject.getJSONArray("ScenicList");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            HashMap<String, Object> map = new HashMap<>();//HashMap用于存储map，每行数据
+            JSONObject jsonObject2 = (JSONObject) jsonArray.opt(i);
+            String ScenicPrice = jsonObject2.getString("ScenicPrice");
+            String ScenicAddress = jsonObject2.getString("ScenicAddress");
+            String ScenicName = jsonObject2.getString("ScenicName");
+            String ScenicPic = jsonObject2.getString(("ScenicPic"));
+            String ScenicIntroduce = jsonObject2.getString(("ScenicIntroduce"));
+            Toast.makeText(getApplicationContext(), ScenicAddress, Toast.LENGTH_SHORT).show();
+            Log.v("Json", ScenicAddress + "    " + ScenicName + "    " + ScenicPic + "    " + ScenicPrice);
+            map.put("ScenicPrice", ScenicPrice);
+            map.put("ScenicAddress", ScenicAddress);
+            map.put("ScenicName", ScenicName);
+            map.put("ScenicPic", ScenicPic);
+            map.put("ScenicIntroduce", ScenicIntroduce);
+            list.add(map);
+        }
+        progressBar9.setVisibility(View.INVISIBLE);
+    } catch (JSONException e) {
+        Log.v("tag", "json exception");
+        e.printStackTrace();
+    } catch (Exception e) {
+        e.printStackTrace();
+        Log.v("tag", "exception");
+        Toast.makeText(getApplicationContext(), "无法连接服务器", Toast.LENGTH_SHORT).show();
+    }
+}
+
+
 }

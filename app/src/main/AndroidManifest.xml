@@ -92,9 +92,15 @@
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateVisible" >
         </activity>
-
         //注册activity
+        <activity
+            android:name=".Star"
+            android:label="@string/title_activity_star" >
+        </activity>
+        <activity
+            android:name=".Favorite"
+            android:label="@string/title_activity_favorite" >
+        </activity>
     </application>
-
 
 </manifest>

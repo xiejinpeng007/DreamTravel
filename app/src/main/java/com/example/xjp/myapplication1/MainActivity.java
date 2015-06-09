@@ -3,19 +3,30 @@ package com.example.xjp.myapplication1;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.special.ResideMenu.ResideMenu;
+import com.special.ResideMenu.ResideMenuItem;
 
-public class MainActivity extends Activity {
+
+public class MainActivity extends Activity implements View.OnClickListener{
     static MainActivity mainActivity;
-
+    ResideMenu resideMenu;
+    ResideMenu.OnMenuListener menuListener;
+    private ResideMenuItem itemHome;
+    private ResideMenuItem itemProfile;
+    private ResideMenuItem itemfavor;
+    private ResideMenuItem itemSettings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +34,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         mainActivity=this;
 
+        //初始化界面
         FragmentManager fm=getFragmentManager();
         FragmentTransaction ft=fm.beginTransaction();
         ft.hide(fm.findFragmentById(R.id.fragment2));
@@ -30,6 +42,32 @@ public class MainActivity extends Activity {
         ft.commit();
         Toast.makeText(this, "欢迎使用梦想旅游！", Toast.LENGTH_SHORT).show();
 
+        //初始化右边栏
+        resideMenu = new ResideMenu(this);
+        resideMenu.setBackground(R.drawable.topic1);
+        resideMenu.attachToActivity(this);
+
+        // create menu items;
+        itemHome     = new ResideMenuItem(this, R.drawable.icon_home,     "Home");
+        itemProfile  = new ResideMenuItem(this, R.drawable.icon_profile,  "Profile");
+        itemfavor = new ResideMenuItem(this, R.drawable.icon_calendar, "favorite");
+        itemSettings = new ResideMenuItem(this, R.drawable.icon_settings, "Settings");
+
+        itemHome.setOnClickListener(this);
+        itemProfile.setOnClickListener(this);
+        itemfavor.setOnClickListener(this);
+        itemSettings.setOnClickListener(this);
+
+        resideMenu.addMenuItem(itemHome, ResideMenu.DIRECTION_LEFT);
+        resideMenu.addMenuItem(itemProfile, ResideMenu.DIRECTION_LEFT);
+        resideMenu.addMenuItem(itemfavor, ResideMenu.DIRECTION_LEFT);
+        resideMenu.addMenuItem(itemSettings, ResideMenu.DIRECTION_LEFT);
+
+        resideMenu.setMenuListener(menuListener);
+        resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);//禁止右边滑动
+
+
+        //设置radiobutton样式和点击事件
         final RadioButton rb=(RadioButton)findViewById(R.id.radioButton);
         final RadioButton rb2=(RadioButton)findViewById(R.id.radioButton2);
         final RadioButton rb3=(RadioButton)findViewById(R.id.radioButton3);
@@ -104,7 +142,29 @@ public class MainActivity extends Activity {
 
 
     }
+    //重写右边栏点击事件
+    @Override
+    public void onClick(View view) {
 
+        if (view == itemHome){
+            Toast.makeText(this,"click home",Toast.LENGTH_SHORT).show();
+        }else if (view == itemProfile){
+            Toast.makeText(this,"click profile",Toast.LENGTH_SHORT).show();
+        }else if (view == itemfavor){
+            Intent intent=new Intent();
+            intent.setClass(MainActivity.this,Favorite.class);
+            startActivity(intent);
+            Toast.makeText(this,"click calendar",Toast.LENGTH_SHORT).show();
+        }else if (view == itemSettings){
+            Toast.makeText(this,"click settings",Toast.LENGTH_SHORT).show();
+        }
+
+        resideMenu.closeMenu();
+    }
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return resideMenu.dispatchTouchEvent(ev);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

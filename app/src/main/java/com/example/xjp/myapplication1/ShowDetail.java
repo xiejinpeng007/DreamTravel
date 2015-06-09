@@ -1,9 +1,11 @@
 package com.example.xjp.myapplication1;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.xjp.myapplication1.DATABASE.DB;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
@@ -25,6 +29,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
 import java.lang.ref.WeakReference;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -45,6 +50,7 @@ public class ShowDetail extends Activity {
             TextView textView69=(TextView)findViewById(R.id.textView69);
             final Button button6=(Button)findViewById(R.id.button6);
             ImageView imageView7=(ImageView)findViewById(R.id.imageView7);
+            ImageView imageView25=(ImageView)findViewById(R.id.imageView25);
             final SharedPreferences sharedPreferences=getSharedPreferences("flag", Context.MODE_PRIVATE);
 
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);//隐藏虚拟键盘
@@ -65,6 +71,27 @@ public class ShowDetail extends Activity {
             int month=calendar.get(Calendar.MONTH)+1;
             int day=calendar.get(Calendar.DAY_OF_MONTH);
             final String date=year+"-"+month+"-"+day;
+            //收藏功能
+            imageView25.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SimpleDateFormat simpleDateFormat    =   new    SimpleDateFormat("yyyy-MM-dd");
+                    String date  = simpleDateFormat.format(new java.util.Date());
+                    String username=sharedPreferences.getString("username","visitor");
+                    DB db=new DB(getApplicationContext());
+                    SQLiteDatabase dbWrite=db.getWritableDatabase();
+                    ContentValues contentValues=new ContentValues();
+                    contentValues.put("username",username);
+                    contentValues.put("ScenicName",ScenicName);
+                    contentValues.put("ScenicPrice",ScenicPrice);
+                    contentValues.put("ScenicAddress",ScenicAddress);
+                    contentValues.put("ScenicClass",ScenicClass);
+                    contentValues.put("date",date);
+                    dbWrite.insert("userfavorite", null, contentValues);
+                    db.close();
+                    Toast.makeText(getApplicationContext(),"收藏成功",Toast.LENGTH_SHORT).show();
+                }
+            });
             //设置button按下效果
             button6.setOnTouchListener(new View.OnTouchListener() {
                 @Override

@@ -27,4 +27,8 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/android-smart-image-view-1.0.0.jar')
+    compile 'com.yalantis:phoenix:1.2.1'
+    compile 'com.specyci:residemenu:1.6+'
+    compile files('libs/universal-image-loader-1.9.4.jar')
+    compile files('libs/volley.jar')
 }

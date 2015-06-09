@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +31,7 @@ import java.lang.ref.WeakReference;
 
 
 public  class LoginActivity extends Activity {
+
     private IHandler handler = new IHandler(this);
     ProgressBar progressBar4;
 

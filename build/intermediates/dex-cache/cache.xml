@@ -2,11 +2,67 @@
 <items version="2" >
 
     <item
+        jar="/Users/XJP/work/android/MyApplication1/app/libs/volley.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="4a94601db9bdfb7dc60efabb3dea91a0675f591d">
+        <dex dex="/Users/XJP/work/android/MyApplication1/app/build/intermediates/pre-dexed/debug/volley-b8d9a171829b94d8716c7c25d58d87f6aebb0fa6.jar" />
+    </item>
+    <item
+        jar="/Users/XJP/work/android/MyApplication1/app/libs/universal-image-loader-1.9.4.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="dd9eeb557650c4ad7394df23f0f5cf27a7cfc697">
+        <dex dex="/Users/XJP/work/android/MyApplication1/app/build/intermediates/pre-dexed/debug/universal-image-loader-1.9.4-a105eb0fbcfbbb568e23492e9277cf6051c78e89.jar" />
+    </item>
+    <item
+        jar="/Users/XJP/work/android/MyApplication1/app/build/intermediates/exploded-aar/com.specyci/residemenu/1.6/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="5e309b1df3051abebbfda31d1c80cd19bec617da">
+        <dex dex="/Users/XJP/work/android/MyApplication1/app/build/intermediates/pre-dexed/debug/classes-a0ce293e243f2d763b6d7c55de21c33a90d8598b.jar" />
+    </item>
+    <item
         jar="/Users/XJP/work/android/MyApplication1/app/libs/android-smart-image-view-1.0.0.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="d76ea8c3e9a60101244d6d04aff8cc75888570f0">
         <dex dex="/Users/XJP/work/android/MyApplication1/app/build/intermediates/pre-dexed/debug/android-smart-image-view-1.0.0-d1c69e4125e5c9be3fe8b76b0de7db25522c9eea.jar" />
+    </item>
+    <item
+        jar="/Users/XJP/work/android/MyApplication1/app/build/intermediates/exploded-aar/com.yalantis/phoenix/1.2.1/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="6a9352e3aec05f1ff9a70095e0eb009fd837924b">
+        <dex dex="/Users/XJP/work/android/MyApplication1/app/build/intermediates/pre-dexed/debug/classes-f1a979661db65834990400092253ff54da77d048.jar" />
+    </item>
+    <item
+        jar="/Users/XJP/work/android/MyApplication1/app/build/intermediates/exploded-aar/com.specyci/residemenu/1.6/libs/nineoldandroids-library-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/XJP/work/android/MyApplication1/app/build/intermediates/pre-dexed/debug/nineoldandroids-library-2.4.0-e41cc8e9bf206f86c4bb8100245c8c6c6fb43695.jar" />
+    </item>
+    <item
+        jar="/Users/XJP/work/android/MyApplication1/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/Users/XJP/work/android/MyApplication1/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-c320032ba3e0509793cc71814c6e0d450a57c127.jar" />
+    </item>
+    <item
+        jar="/Users/XJP/work/android/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Users/XJP/work/android/MyApplication1/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-385fd50242f906035fae6d767e95c3aef0c00242.jar" />
+    </item>
+    <item
+        jar="/Users/XJP/work/android/MyApplication1/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Users/XJP/work/android/MyApplication1/app/build/intermediates/pre-dexed/debug/classes-2a6e24c9617e7dcf0703acd8c2b53dfaca58b021.jar" />
     </item>
 
 </items>

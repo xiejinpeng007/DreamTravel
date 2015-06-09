@@ -1,8 +1,6 @@
 package com.example.xjp.myapplication1;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
@@ -38,7 +34,6 @@ import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,7 +53,7 @@ public class Fragment2 extends Fragment {
         view = inflater.inflate(R.layout.fragment2, container, false);
         final ListView listView13=(ListView)view.findViewById(R.id.listView13);
         progressBar13=(ProgressBar)view.findViewById(R.id.progressBar13);
-
+        SmartImageView smartImageView=(SmartImageView)view.findViewById(R.id.smartimageview5);
         adapter=new SimpleAdapter(getActivity(),list,R.layout.listview13,
                 new String[]{"ScenicPic","ScenicName","ScenicPrice","ScenicAddress"},
                 new int[]{R.id.smartimageview5,R.id.textView73,R.id.textView77,R.id.textView78});
